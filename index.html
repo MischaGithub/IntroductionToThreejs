@@ -46,6 +46,7 @@
 
       // Adding scene control
       controls = new THREE.OrbitControls(camera, renderer.domElement);
+      // controls.autoRotate = true;
       controls.minDistance = 15;
       controls.maxDistance = 30;
 
@@ -82,13 +83,6 @@
       const material = new THREE.MeshFaceMaterial(cubeMaterials);
       const cube = new THREE.Mesh(geometry, material);
       scene.add(cube);
-
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-      scene.add(ambientLight);
-
-      // changing the camera position
-      camera.lookAt(cube.position);
-      camera.position.z = -5;
 
       // Floor
       const floorGeometry = new THREE.BoxGeometry(100, 1, 100);
@@ -164,11 +158,39 @@
       rightWallCube.position.x = 50;
       scene.add(rightWallCube);
 
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+      scene.add(ambientLight);
+
+      const light1 = new THREE.PointLight(0xff0040, 4, 50);
+      // scene.add(light1);
+
+      const light2 = new THREE.PointLight(0x0040ff, 3, 50);
+      // scene.add(light2);
+
+      const light3 = new THREE.PointLight(0x80ff80, 4, 50);
+      // scene.add(light3);
+      // changing the camera position
+      // camera.lookAt(cube.position);
+      camera.position.z = 3;
+
       // game logic
 
       const update = function () {
         // cube.rotation.x += 0.01;
         // cube.rotation.y += 0.005;
+
+        const time = Date.now() * 0.0005;
+        light1.position.x = Math.sin(time * 0.7) * 30;
+        light1.position.y = Math.cos(time * 0.5) * 40;
+        light1.position.z = Math.cos(time * 0.3) * 30;
+
+        light2.position.x = Math.cos(time * 0.3) * 30;
+        light2.position.y = Math.sin(time * 0.5) * 40;
+        light2.position.z = Math.sin(time * 0.7) * 30;
+
+        light3.position.x = Math.sin(time * 0.7) * 30;
+        light3.position.y = Math.cos(time * 0.3) * 40;
+        light3.position.z = Math.sin(time * 0.5) * 30;
       };
 
       // draw Scene
