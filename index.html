@@ -45,13 +45,36 @@
       controls = new THREE.OrbitControls(camera, renderer.domElement);
 
       // create the shape
-      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const geometry = new THREE.BoxGeometry(2, 2, 2);
+      const cubeMaterials = [
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load('textures/crate.gif'),
+          side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load('textures/crate.gif'),
+          side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load('textures/crate.gif'),
+          side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load('textures/crate.gif'),
+          side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load('textures/crate.gif'),
+          side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+          map: new THREE.TextureLoader().load('textures/crate.gif'),
+          side: THREE.DoubleSide,
+        }),
+      ];
 
       // create a material, color or image texture
-      const material = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        wireframe: true,
-      });
+      const material = new THREE.MeshFaceMaterial(cubeMaterials);
       const cube = new THREE.Mesh(geometry, material);
       scene.add(cube);
 
